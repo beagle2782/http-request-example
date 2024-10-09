@@ -1,0 +1,29 @@
+<html>
+	<body>
+		<h1>ATTENTION: Check JavaScript console for details on requests!</h1>
+		<h2>Request 1</h2>
+		<button onclick="getData('https://countriesnow.space/api/v0.1/countries/population')">Request 1</button>
+		<h2>Request 2</h2>
+		<button onclick="getData('https://api.jikan.moe/v4/recommendations/anime')">Request 2</button>
+		<h2>Request 3</h2>
+		<button onclick="getData('https://api.jikan.moe/v4/random/anime')">Request 3</button>
+		<h2>Request 4</h2>
+		<button onclick="getData('https://api.jikan.moe/v4/random/manga')">Request 4</button>
+		<script>
+			async function getData(url) {
+				try {
+					const response = await fetch(url);
+					if(!response.ok) {
+						throw new Error(`Response status: ${response.status}`);
+					}
+
+					const json = await response.json();
+    				console.log(json);
+					return json;
+				} catch (error) {
+   					 console.error(error.message);
+ 				}
+			}
+		</script>
+	</body>
+</html>
